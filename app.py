@@ -328,6 +328,14 @@ with col_btn2:
             st.rerun()
         else:
             st.error("No se pudieron obtener los resultados")
+            st.info("Revisando conexión con la fuente de datos...")
+            # Mostrar más información
+            try:
+                import requests
+                r = requests.get("https://www.quinielas.com.ar/resultados-quini-6.html", timeout=10)
+                st.write(f"Conexión a quinielas.com.ar: {r.status_code}")
+            except Exception as e:
+                st.write(f"Error de conexión: {e}")
 
 if st.session_state["resultados_cache"]:
     resultados = st.session_state["resultados_cache"]
