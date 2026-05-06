@@ -345,6 +345,10 @@ def _fuente_alternativa():
         "https://www.sietenumeros.com/quini6.php",
         "https://www.loteria-nacional.com.ar/quini-6",
         "https://resultadosquiniela.com/quini6",
+	    "https://www.loteria.ar/quini6",
+        "https://www.quinielas.com.ar/resultados-quini-6",
+
+        
     ]
     
     headers = {
