@@ -1,0 +1,268 @@
+{
+  "3369": {
+    "resultados": {
+      "Tradicional": [
+        4,
+        6,
+        7,
+        13,
+        19,
+        43
+      ],
+      "La Segunda": [
+        3,
+        5,
+        12,
+        14,
+        32,
+        34
+      ],
+      "Revancha": [
+        1,
+        8,
+        16,
+        25,
+        33,
+        43
+      ],
+      "Siempre Sale": [
+        3,
+        6,
+        15,
+        19,
+        38,
+        45
+      ],
+      "Premio Extra": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        12,
+        13,
+        14,
+        16,
+        19,
+        25,
+        32,
+        33,
+        34,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 959.232.909,60",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0
+      },
+      "La Segunda": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0
+      },
+      "Revancha": {
+        "monto": "$ 3.546.932.522,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0
+      },
+      "Siempre Sale": {
+        "monto": "$ 289.523.079,00",
+        "estado": "GANADO",
+        "ganadores": 25,
+        "aciertos_ganadores": 5
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 2858,
+        "aciertos_ganadores": 6
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3369",
+      "fecha": "Miércoles 29 de Abril 2026",
+      "texto_completo": "Sorteo N° 3369 — Miércoles 29 de Abril 2026"
+    },
+    "fecha_consulta": "03/05/2026 21:46"
+  },
+  "3370": {
+    "resultados": {
+      "Tradicional": [
+        9,
+        15,
+        17,
+        30,
+        37,
+        43
+      ],
+      "La Segunda": [
+        1,
+        6,
+        10,
+        15,
+        21,
+        25
+      ],
+      "Revancha": [
+        5,
+        7,
+        19,
+        28,
+        29,
+        32
+      ],
+      "Siempre Sale": [
+        1,
+        12,
+        22,
+        28,
+        41,
+        44
+      ],
+      "Premio Extra": [
+        5,
+        6,
+        7,
+        9,
+        10,
+        15,
+        17,
+        19,
+        21,
+        25,
+        28,
+        29,
+        30,
+        32,
+        37,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 1.223.675.359,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.223.675.359,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 41.003.010,00",
+            "ganadores": 23,
+            "premio_ganador": "$ 1.782.739,57"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.300.903,00",
+            "ganadores": 1277,
+            "premio_ganador": "$ 9.632,66"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 13.277.480,58",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 780.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 41.003.010,00",
+            "ganadores": 41,
+            "premio_ganador": "$ 1.000.073,41"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.300.903,00",
+            "ganadores": 2119,
+            "premio_ganador": "$ 5.805,05"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 7.800.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 3.999.786.966,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 3.999.786.966,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 43.895.941,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 367.945.983,00",
+        "estado": "GANADO",
+        "ganadores": 14,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 367.945.983,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.679.459,83",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 2653,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3370",
+      "fecha": "Domingo 3 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3370 — Domingo 3 de Mayo 2026"
+    },
+    "fecha_consulta": "05/05/2026 21:50"
+  }
+}
