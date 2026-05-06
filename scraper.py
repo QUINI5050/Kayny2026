@@ -186,8 +186,7 @@ def _analizar_estado_pozo(texto_bloque, modalidad):
                     break
             if resultado["estado"] == "?": resultado["estado"] = "VACANTE"
         resultado["tabla_premios"] = _extraer_tabla_premios(texto_bloque, modalidad)
-    except Exception as e:
-        print(f"Error en _analizar_estado_pozo: {e}")
+    except: pass
     return resultado
 
 def _analizar_estado_pozo_extra(texto_bloque):
@@ -226,8 +225,7 @@ def _extraer_tabla_premios(texto_bloque, modalidad):
                     "ganadores": ganadores,
                     "premio_ganador": f"$ {premio_ganador}" if premio_ganador else ""
                 })
-    except Exception as e:
-        print(f"Error extrayendo tabla de premios: {e}")
+    except: pass
     return premios
 
 def obtener_resultados():
@@ -246,8 +244,8 @@ def obtener_resultados_por_numero(numero_sorteo=None):
         res_hist, poz_hist, inf_hist = obtener_sorteo_historial(str(numero_sorteo).strip())
         if res_hist and len(res_hist) >= 4: return res_hist, poz_hist, inf_hist
     
-    # Solo usa Selenium en Windows (PC local)
-    if platform.system() == "Windows":
+    es_windows = platform.system() == "Windows"
+    if es_windows:
         try:
             chrome_options = Options()
             chrome_options.add_argument("--headless=new")
@@ -324,11 +322,10 @@ def obtener_resultados_por_numero(numero_sorteo=None):
             print(f"⚠️ Selenium falló: {e}")
             resultados = {}
     else:
-        print("☁️ Entorno cloud detectado, usando fuente alternativa...")
+        print("☁️ Entorno cloud detectado")
     
-    # Si no hay resultados (o estamos en la nube), usar fuente alternativa
     if len(resultados) < 4:
-        print("📡 Usando fuente alternativa (quinielas.com.ar)...")
+        print("📡 Usando fuente alternativa...")
         resultados, pozos, numero_sorteo_str, fecha_sorteo = _fuente_alternativa()
     
     info_sorteo = {"numero": numero_sorteo_str, "fecha": fecha_sorteo, "texto_completo": f"Sorteo {numero_sorteo_str} — {fecha_sorteo}"}
@@ -338,31 +335,65 @@ def obtener_resultados_por_numero(numero_sorteo=None):
 def _fuente_alternativa():
     import requests
     from bs4 import BeautifulSoup
+    
     resultados = {}
     pozos = {}
     numero = "No disponible"
     fecha = "No disponible"
-    try:
-        url = "https://www.quinielas.com.ar/resultados-quini-6.html"
-        resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-        soup = BeautifulSoup(resp.text, "html.parser")
-        texto = soup.get_text()
-        p = re.search(r'[Ss]orteo\s*(?:N[°º]?\s*)?(\d{3,5})', texto)
-        if p: numero = f"N° {p.group(1)}"
-        p = re.search(r'(?:domingo|miércoles)\s+(\d{2}/\d{2}/\d{4})', texto, re.IGNORECASE)
-        if p: fecha = p.group(0).strip()
-        for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale"]:
-            patron = rf'{mod}[\s\S]*?(\d{{1,2}})\s+(\d{{1,2}})\s+(\d{{1,2}})\s+(\d{{1,2}})\s+(\d{{1,2}})\s+(\d{{1,2}})'
-            m = re.search(patron, texto, re.IGNORECASE)
-            if m:
-                resultados[mod] = sorted([int(m.group(i)) for i in range(1, 7)])
-                pozos[mod] = {"monto": "Ver web", "estado": "?", "ganadores": 0, "aciertos_ganadores": 0, "tabla_premios": []}
-        ex = _buscar_modalidad_en_texto(texto, "Premio Extra")
-        if ex and len(ex) >= 6:
-            resultados["Premio Extra"] = sorted(ex[:18]) if len(ex) >= 18 else sorted(ex)
-            pozos["Premio Extra"] = {"monto": "Ver web", "estado": "GANADO", "ganadores": 0, "aciertos_ganadores": 6, "tabla_premios": []}
-    except Exception as e:
-        print(f"Error fuente alternativa: {e}")
+    
+    urls = [
+        "https://www.sietenumeros.com/quini6.php",
+        "https://www.loteria-nacional.com.ar/quini-6",
+        "https://resultadosquiniela.com/quini6",
+    ]
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "es-AR,es;q=0.9",
+    }
+    
+    for url in urls:
+        try:
+            print(f"📡 Intentando: {url}")
+            resp = requests.get(url, headers=headers, timeout=15)
+            print(f"   Código: {resp.status_code}")
+            
+            if resp.status_code != 200:
+                continue
+                
+            soup = BeautifulSoup(resp.text, "html.parser")
+            texto = soup.get_text()
+            
+            p = re.search(r'[Ss]orteo\s*(?:N[°º]?\s*)?(\d{3,5})', texto)
+            if p: numero = f"N° {p.group(1)}"
+            
+            p = re.search(r'(?:domingo|miércoles|miercoles)\s+(\d{2}/\d{2}/\d{4})', texto, re.IGNORECASE)
+            if p: fecha = p.group(0).strip()
+            
+            for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale"]:
+                patron = rf'{mod}[\s\S]*?(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})'
+                m = re.search(patron, texto, re.IGNORECASE)
+                if m:
+                    numeros = [int(m.group(i)) for i in range(1, 7)]
+                    resultados[mod] = sorted(numeros)
+                    pozos[mod] = {"monto": "Ver web", "estado": "?", "ganadores": 0, "aciertos_ganadores": 0, "tabla_premios": []}
+                    print(f"  ✅ {mod}: {resultados[mod]}")
+            
+            if len(resultados) >= 4:
+                print(f"✅ Fuente funcionó: {url}")
+                ex = _buscar_modalidad_en_texto(texto, "Premio Extra")
+                if ex and len(ex) >= 6:
+                    resultados["Premio Extra"] = sorted(ex[:18]) if len(ex) >= 18 else sorted(ex)
+                    pozos["Premio Extra"] = {"monto": "Ver web", "estado": "GANADO", "ganadores": 0, "aciertos_ganadores": 6, "tabla_premios": []}
+                break
+            else:
+                resultados = {}
+                
+        except Exception as e:
+            print(f"❌ Error con {url}: {e}")
+            continue
+    
     return resultados if len(resultados) >= 4 else {}, pozos, numero, fecha
 
 def obtener_fecha_sorteo_actual():
