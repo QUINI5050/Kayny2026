@@ -404,8 +404,13 @@ if st.session_state["resultados_cache"]:
     
     col_e1, col_e2, col_e3 = st.columns([1, 2, 1])
     with col_e2:
+        # Clave de seguridad para envío de mails
+        clave_envio = st.text_input("🔑 Clave de seguridad", type="password", placeholder="Ingresá la clave para enviar", key="clave_mail")
+        
         if st.button("✉️ ENVIAR POR MAIL A TODOS", use_container_width=True):
             if not st.session_state.get("password"): st.error("Configurá la contraseña en la barra lateral")
+            elif clave_envio != "621512":
+                st.error("❌ Clave incorrecta. No se enviaron los mails.")
             else:
                 with st.spinner("📧 Preparando..."):
                     jugadas = cargar_jugadas()
