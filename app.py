@@ -405,7 +405,18 @@ if st.session_state["resultados_cache"]:
     col_e1, col_e2, col_e3 = st.columns([1, 2, 1])
     with col_e2:
         # Clave de seguridad para envío de mails
-        clave_envio = st.text_input("🔑 Clave de seguridad", type="password", placeholder="Ingresá la clave para enviar", key="clave_mail")
+
+        # Usar una variable de sesión para controlar el valor
+        if "clave_valor" not in st.session_state:
+            st.session_state["clave_valor"] = ""
+        
+        clave_envio = st.text_input(
+            "🔑 Clave de seguridad", 
+            type="password", 
+            placeholder="Ingresá la clave para enviar", 
+            value=st.session_state["clave_valor"],
+            key="input_clave"
+        )
         
         if st.button("✉️ ENVIAR POR MAIL A TODOS", use_container_width=True):
             if not st.session_state.get("password"): st.error("Configurá la contraseña en la barra lateral")
@@ -470,9 +481,8 @@ if st.session_state["resultados_cache"]:
                                 if enviados > 0:
                                     st.success(f"✅ {enviados} mails enviados")
                                     # Resetear la clave
-                                    st.session_state["clave_mail"] = ""
+                                    st.session_state["clave_valor"] = ""
                                     st.rerun()
-
 else:
     st.info("👆 Hacé clic en **CARGAR ÚLTIMO SORTEO**")
     st.markdown("""<div style="text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a5c,#2c5aa0);border-radius:20px;color:#fff;margin:20px 0"><div style="font-size:5em">🎰</div><div style="font-size:1.5em;margin:20px 0">Quini 6 Checker</div></div>""", unsafe_allow_html=True)
