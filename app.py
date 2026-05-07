@@ -141,7 +141,10 @@ def _construir_tablero_html(detalle, resultados):
         for mod in modalidades:
             if mod in jd["modalidades"]:
                 d = jd["modalidades"][mod]; a = d["aciertos"]
-                ct = "total-premio" if a>=4 else ("total-medio" if a>=3 else ("total-bajo" if a>0 else "total-cero"))
+                if mod in ["Premio Extra", "Revancha"]:
+                    ct = "total-premio" if a>=6 else ("total-medio" if a>=3 else ("total-bajo" if a>0 else "total-cero"))
+                else:
+                    ct = "total-premio" if a>=4 else ("total-medio" if a>=3 else ("total-bajo" if a>0 else "total-cero"))
                 nm = "Extra" if mod=="Premio Extra" else mod
                 html += f'<tr><td class="modalidad">{nm}</td>'
                 for n in nums_j: html += '<td class="celda-ok">OK</td>' if n in d["numeros_sorteados"] else '<td class="celda-vacia">-</td>'
@@ -227,7 +230,10 @@ h3{color:#2c5aa0;font-size:1.2em}
         for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale", "Premio Extra"]:
             if mod in jd["modalidades"]:
                 d = jd["modalidades"][mod]; a = d["aciertos"]
-                ct = "total-verde" if a>=4 else ("total-naranja" if a>=3 else "")
+                if mod in ["Premio Extra", "Revancha"]:
+                    ct = "total-verde" if a>=6 else ("total-naranja" if a>=3 else "")
+                else:
+                    ct = "total-verde" if a>=4 else ("total-naranja" if a>=3 else "")
                 nm = "Extra" if mod=="Premio Extra" else mod
                 html += f'<tr><td class="mod" style="color:#1a3a5c;background:#eaf0f8;font-weight:bold;text-align:left">{nm}</td>'
                 for n in nums_j: html += '<td class="ok-pdf">OK</td>' if n in d["numeros_sorteados"] else '<td>-</td>'
@@ -265,8 +271,8 @@ with st.sidebar:
     with tabs[1]:
         st.subheader("Configurar email")
         st.session_state["destinatario"] = st.text_input("Mail destinatario", value="desktop.share2021@gmail.com")
-        st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
-        st.session_state["password"] = st.text_input("Contraseña de app", type="password", value = "hmtw lcaq nlni ejqc")
+        st.session_state["remitente"] = st.text_input("Tu Gmail", value="desktop.share2021@gmail.com")
+        st.session_state["password"] = st.text_input("Contraseña de app", type="password")
         if st.button("📝 Guardar email"): st.success("Guardado")
     
     with tabs[2]:
@@ -326,16 +332,7 @@ with col_btn2:
         if res and len(res)>=4:
             st.session_state.update({"resultados_cache":res, "pozos_cache":poz, "info_sorteo_cache":inf, "ultimo_chequeo":datetime.now().strftime("%d/%m %H:%M"), "mostrar_detalle":False})
             st.rerun()
-        else:
-            st.error("No se pudieron obtener los resultados")
-            st.info("Revisando conexión con la fuente de datos...")
-            # Mostrar más información
-            try:
-                import requests
-                r = requests.get("https://www.quinielas.com.ar/resultados-quini-6.html", timeout=10)
-                st.write(f"Conexión a quinielas.com.ar: {r.status_code}")
-            except Exception as e:
-                st.write(f"Error de conexión: {e}")
+        else: st.error("No se pudieron obtener los resultados")
 
 if st.session_state["resultados_cache"]:
     resultados = st.session_state["resultados_cache"]
@@ -399,7 +396,7 @@ if st.session_state["resultados_cache"]:
         st.markdown("---"); st.markdown("## 📋 TABLERO DE JUGADAS")
         jugadas = cargar_jugadas(); detalle = revisar_premios(jugadas, resultados)
         components.html(_construir_tablero_html(detalle, resultados), height=80+len(detalle)*310, scrolling=True)
-        tp = sum(1 for j in detalle for d in j["modalidades"].values() if d["aciertos"]>=4)
+        tp = sum(1 for j in detalle for mod, d in j["modalidades"].items() if (mod in ["Premio Extra", "Revancha"] and d["aciertos"]>=6) or (mod not in ["Premio Extra", "Revancha"] and d["aciertos"]>=4))
         if tp>0: st.balloons(); st.success(f"🚨 ¡TOTAL: {tp} premios!")
     
     st.markdown("---")
