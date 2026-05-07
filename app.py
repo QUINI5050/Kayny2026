@@ -270,9 +270,9 @@ with st.sidebar:
     
     with tabs[1]:
         st.subheader("Configurar email")
-        st.session_state["destinatario"] = st.text_input("Mail destinatario", value="desktop.share2021@gmail.com")
-        st.session_state["remitente"] = st.text_input("Tu Gmail", value="desktop.share2021@gmail.com")
-        st.session_state["password"] = st.text_input("Contraseña de app", type="password")
+        st.session_state["destinatario"] = st.text_input("Mail destinatario", value="adrian.bertalot@prysmian.com")
+        st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
+        st.session_state["password"] = st.text_input("Contraseña de app", type="password", value = "hmtw lcaq nlni ejqc")
         if st.button("📝 Guardar email"): st.success("Guardado")
     
     with tabs[2]:
