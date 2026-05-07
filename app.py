@@ -467,7 +467,7 @@ if st.session_state["resultados_cache"]:
                                         enviados += 1
                                     except Exception as e:
                                         st.error(f"❌ {dest}: {e}")
-                                                                if enviados > 0:
+                                if enviados > 0:
                                     st.success(f"✅ {enviados} mails enviados")
                                     # Resetear la clave
                                     st.session_state["clave_mail"] = ""
