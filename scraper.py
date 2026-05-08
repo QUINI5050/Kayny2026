@@ -128,50 +128,19 @@ def exportar_historial_a_excel(archivo_salida="historial_completo.xlsx"):
     import pandas as pd
     historial = cargar_historial()
     if not historial: return False, "Sin datos"
-    
     filas = []
     for num, datos in historial.items():
-        fila = {
-            "numero_sorteo": int(num),
-            "fecha": datos.get("info_sorteo", {}).get("fecha", ""),
-        }
-        
-        # Números ganadores por modalidad
-        resultados = datos.get("resultados", {})
+        fila = {"numero_sorteo": int(num), "fecha": datos.get("info_sorteo", {}).get("fecha", "")}
         for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale", "Premio Extra"]:
-            nums = resultados.get(mod, [])
+            nums = datos.get("resultados", {}).get(mod, [])
             fila[mod] = ", ".join(str(n).zfill(2) for n in nums)
-        
-        # Pozos y tabla de premios
-        pozos = datos.get("pozos", {})
-        for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale", "Premio Extra"]:
-            p = pozos.get(mod, {})
-            
-            # Monto del pozo principal
-            fila[f"pozo_{mod.lower().replace(' ', '_')}"] = p.get("monto", "") if isinstance(p, dict) else str(p)
-            
-            # Estado (VACANTE/GANADO)
-            fila[f"estado_{mod.lower().replace(' ', '_')}"] = p.get("estado", "") if isinstance(p, dict) else ""
-            
-            # Ganadores del 1° premio
-            fila[f"ganadores_{mod.lower().replace(' ', '_')}"] = p.get("ganadores", 0) if isinstance(p, dict) else 0
-            
-            # Tabla de premios detallada
-            tabla = p.get("tabla_premios", []) if isinstance(p, dict) else []
-            if tabla:
-                for premio in tabla:
-                    prefijo = f"{mod.lower().replace(' ', '_')}_{premio['premio'].lower().replace(' ', '_').replace('°', '')}"
-                    fila[f"{prefijo}_pozo"] = premio.get("pozo", "")
-                    fila[f"{prefijo}_ganadores"] = premio.get("ganadores", "")
-                    fila[f"{prefijo}_premio_por_ganador"] = premio.get("premio_ganador", "")
-        
+        for mod, col in [("Tradicional","pozo_tradicional"),("La Segunda","pozo_segunda"),("Revancha","pozo_revancha"),("Siempre Sale","pozo_siempre_sale"),("Premio Extra","pozo_extra")]:
+            p = datos.get("pozos", {}).get(mod, {})
+            fila[col] = p.get("monto", "") if isinstance(p, dict) else str(p)
         filas.append(fila)
-    
-    df = pd.DataFrame(filas)
-    df = df.sort_values("numero_sorteo", ascending=False)
-    df.to_excel(archivo_salida, index=False)
-    
+    pd.DataFrame(filas).sort_values("numero_sorteo", ascending=False).to_excel(archivo_salida, index=False)
     return True, archivo_salida
+
 # ============================================================
 # SCRAPING
 # ============================================================
