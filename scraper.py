@@ -333,69 +333,29 @@ def obtener_resultados_por_numero(numero_sorteo=None):
     return resultados, pozos, info_sorteo
 
 def _fuente_alternativa():
-    import requests
-    from bs4 import BeautifulSoup
-    
+    """
+    En la nube no podemos conectarnos a fuentes externas.
+    Usamos el último sorteo guardado en el historial local.
+    """
     resultados = {}
     pozos = {}
     numero = "No disponible"
     fecha = "No disponible"
     
-    urls = [
-        "https://www.sietenumeros.com/quini6.php",
-        "https://www.loteria-nacional.com.ar/quini-6",
-        "https://resultadosquiniela.com/quini6",
-	"https://www.loteria.ar/quini6",
-        "https://www.quinielas.com.ar/resultados-quini-6",
-
-    ]
+    print("📂 Cargando último sorteo del historial local...")
+    historial = cargar_historial()
     
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "es-AR,es;q=0.9",
-    }
-    
-    for url in urls:
-        try:
-            print(f"📡 Intentando: {url}")
-            resp = requests.get(url, headers=headers, timeout=15)
-            print(f"   Código: {resp.status_code}")
-            
-            if resp.status_code != 200:
-                continue
-                
-            soup = BeautifulSoup(resp.text, "html.parser")
-            texto = soup.get_text()
-            
-            p = re.search(r'[Ss]orteo\s*(?:N[°º]?\s*)?(\d{3,5})', texto)
-            if p: numero = f"N° {p.group(1)}"
-            
-            p = re.search(r'(?:domingo|miércoles|miercoles)\s+(\d{2}/\d{2}/\d{4})', texto, re.IGNORECASE)
-            if p: fecha = p.group(0).strip()
-            
-            for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale"]:
-                patron = rf'{mod}[\s\S]*?(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})'
-                m = re.search(patron, texto, re.IGNORECASE)
-                if m:
-                    numeros = [int(m.group(i)) for i in range(1, 7)]
-                    resultados[mod] = sorted(numeros)
-                    pozos[mod] = {"monto": "Ver web", "estado": "?", "ganadores": 0, "aciertos_ganadores": 0, "tabla_premios": []}
-                    print(f"  ✅ {mod}: {resultados[mod]}")
-            
-            if len(resultados) >= 4:
-                print(f"✅ Fuente funcionó: {url}")
-                ex = _buscar_modalidad_en_texto(texto, "Premio Extra")
-                if ex and len(ex) >= 6:
-                    resultados["Premio Extra"] = sorted(ex[:18]) if len(ex) >= 18 else sorted(ex)
-                    pozos["Premio Extra"] = {"monto": "Ver web", "estado": "GANADO", "ganadores": 0, "aciertos_ganadores": 6, "tabla_premios": []}
-                break
-            else:
-                resultados = {}
-                
-        except Exception as e:
-            print(f"❌ Error con {url}: {e}")
-            continue
+    if historial:
+        ultimo_num = sorted(historial.keys(), reverse=True)[0]
+        datos = historial[ultimo_num]
+        resultados = datos.get("resultados", {})
+        pozos = datos.get("pozos", {})
+        info = datos.get("info_sorteo", {})
+        numero = info.get("numero", f"N° {ultimo_num}")
+        fecha = info.get("fecha", "")
+        print(f"✅ Usando historial: {numero} - {len(resultados)} modalidades")
+    else:
+        print("❌ No hay sorteos en el historial")
     
     return resultados if len(resultados) >= 4 else {}, pozos, numero, fecha
 
