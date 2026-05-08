@@ -248,7 +248,7 @@ with st.sidebar:
     st.header("⚙️ Configuración")
     tabs = st.tabs(["📋 Jugadas", "📧 Email", "🔍 Sorteos", "📥 Importar", "ℹ️ Info"])
     
-     with tabs[0]:
+    with tabs[0]:
         st.subheader("Tus jugadas")
         jugadas = cargar_jugadas()
         for i, j in enumerate(jugadas):
