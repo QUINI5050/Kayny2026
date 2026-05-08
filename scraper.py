@@ -128,19 +128,50 @@ def exportar_historial_a_excel(archivo_salida="historial_completo.xlsx"):
     import pandas as pd
     historial = cargar_historial()
     if not historial: return False, "Sin datos"
+    
     filas = []
     for num, datos in historial.items():
-        fila = {"numero_sorteo": int(num), "fecha": datos.get("info_sorteo", {}).get("fecha", "")}
+        fila = {
+            "numero_sorteo": int(num),
+            "fecha": datos.get("info_sorteo", {}).get("fecha", ""),
+        }
+        
+        # Números ganadores por modalidad
+        resultados = datos.get("resultados", {})
         for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale", "Premio Extra"]:
-            nums = datos.get("resultados", {}).get(mod, [])
+            nums = resultados.get(mod, [])
             fila[mod] = ", ".join(str(n).zfill(2) for n in nums)
-        for mod, col in [("Tradicional","pozo_tradicional"),("La Segunda","pozo_segunda"),("Revancha","pozo_revancha"),("Siempre Sale","pozo_siempre_sale"),("Premio Extra","pozo_extra")]:
-            p = datos.get("pozos", {}).get(mod, {})
-            fila[col] = p.get("monto", "") if isinstance(p, dict) else str(p)
+        
+        # Pozos y tabla de premios
+        pozos = datos.get("pozos", {})
+        for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale", "Premio Extra"]:
+            p = pozos.get(mod, {})
+            
+            # Monto del pozo principal
+            fila[f"pozo_{mod.lower().replace(' ', '_')}"] = p.get("monto", "") if isinstance(p, dict) else str(p)
+            
+            # Estado (VACANTE/GANADO)
+            fila[f"estado_{mod.lower().replace(' ', '_')}"] = p.get("estado", "") if isinstance(p, dict) else ""
+            
+            # Ganadores del 1° premio
+            fila[f"ganadores_{mod.lower().replace(' ', '_')}"] = p.get("ganadores", 0) if isinstance(p, dict) else 0
+            
+            # Tabla de premios detallada
+            tabla = p.get("tabla_premios", []) if isinstance(p, dict) else []
+            if tabla:
+                for premio in tabla:
+                    prefijo = f"{mod.lower().replace(' ', '_')}_{premio['premio'].lower().replace(' ', '_').replace('°', '')}"
+                    fila[f"{prefijo}_pozo"] = premio.get("pozo", "")
+                    fila[f"{prefijo}_ganadores"] = premio.get("ganadores", "")
+                    fila[f"{prefijo}_premio_por_ganador"] = premio.get("premio_ganador", "")
+        
         filas.append(fila)
-    pd.DataFrame(filas).sort_values("numero_sorteo", ascending=False).to_excel(archivo_salida, index=False)
+    
+    df = pd.DataFrame(filas)
+    df = df.sort_values("numero_sorteo", ascending=False)
+    df.to_excel(archivo_salida, index=False)
+    
     return True, archivo_salida
-
 # ============================================================
 # SCRAPING
 # ============================================================
@@ -333,29 +364,69 @@ def obtener_resultados_por_numero(numero_sorteo=None):
     return resultados, pozos, info_sorteo
 
 def _fuente_alternativa():
-    """
-    En la nube no podemos conectarnos a fuentes externas.
-    Usamos el último sorteo guardado en el historial local.
-    """
+    import requests
+    from bs4 import BeautifulSoup
+    
     resultados = {}
     pozos = {}
     numero = "No disponible"
     fecha = "No disponible"
     
-    print("📂 Cargando último sorteo del historial local...")
-    historial = cargar_historial()
+    urls = [
+        "https://www.sietenumeros.com/quini6.php",
+        "https://www.loteria-nacional.com.ar/quini-6",
+        "https://resultadosquiniela.com/quini6",
+	"https://www.loteria.ar/quini6",
+        "https://www.quinielas.com.ar/resultados-quini-6",
+
+    ]
     
-    if historial:
-        ultimo_num = sorted(historial.keys(), reverse=True)[0]
-        datos = historial[ultimo_num]
-        resultados = datos.get("resultados", {})
-        pozos = datos.get("pozos", {})
-        info = datos.get("info_sorteo", {})
-        numero = info.get("numero", f"N° {ultimo_num}")
-        fecha = info.get("fecha", "")
-        print(f"✅ Usando historial: {numero} - {len(resultados)} modalidades")
-    else:
-        print("❌ No hay sorteos en el historial")
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "es-AR,es;q=0.9",
+    }
+    
+    for url in urls:
+        try:
+            print(f"📡 Intentando: {url}")
+            resp = requests.get(url, headers=headers, timeout=15)
+            print(f"   Código: {resp.status_code}")
+            
+            if resp.status_code != 200:
+                continue
+                
+            soup = BeautifulSoup(resp.text, "html.parser")
+            texto = soup.get_text()
+            
+            p = re.search(r'[Ss]orteo\s*(?:N[°º]?\s*)?(\d{3,5})', texto)
+            if p: numero = f"N° {p.group(1)}"
+            
+            p = re.search(r'(?:domingo|miércoles|miercoles)\s+(\d{2}/\d{2}/\d{4})', texto, re.IGNORECASE)
+            if p: fecha = p.group(0).strip()
+            
+            for mod in ["Tradicional", "La Segunda", "Revancha", "Siempre Sale"]:
+                patron = rf'{mod}[\s\S]*?(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})[\s\-]+(\d{{1,2}})'
+                m = re.search(patron, texto, re.IGNORECASE)
+                if m:
+                    numeros = [int(m.group(i)) for i in range(1, 7)]
+                    resultados[mod] = sorted(numeros)
+                    pozos[mod] = {"monto": "Ver web", "estado": "?", "ganadores": 0, "aciertos_ganadores": 0, "tabla_premios": []}
+                    print(f"  ✅ {mod}: {resultados[mod]}")
+            
+            if len(resultados) >= 4:
+                print(f"✅ Fuente funcionó: {url}")
+                ex = _buscar_modalidad_en_texto(texto, "Premio Extra")
+                if ex and len(ex) >= 6:
+                    resultados["Premio Extra"] = sorted(ex[:18]) if len(ex) >= 18 else sorted(ex)
+                    pozos["Premio Extra"] = {"monto": "Ver web", "estado": "GANADO", "ganadores": 0, "aciertos_ganadores": 6, "tabla_premios": []}
+                break
+            else:
+                resultados = {}
+                
+        except Exception as e:
+            print(f"❌ Error con {url}: {e}")
+            continue
     
     return resultados if len(resultados) >= 4 else {}, pozos, numero, fecha
 
