@@ -276,7 +276,7 @@ with st.sidebar:
         with c2:
             if st.button("➕ Nueva", use_container_width=True): jugadas.append({"nombre":f"Jugada {len(jugadas)+1}","email":"","numeros":[1,2,3,4,5,6]}); guardar_jugadas(jugadas); st.rerun()
     
-     with tabs[1]:
+    with tabs[1]:
         st.subheader("Configurar email")
         st.session_state["destinatario"] = st.text_input("Mail destinatario", value="adrian.bertalot@prysmian.com")
         st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
