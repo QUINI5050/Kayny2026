@@ -248,7 +248,7 @@ with st.sidebar:
     st.header("⚙️ Configuración")
     tabs = st.tabs(["📋 Jugadas", "📧 Email", "🔍 Sorteos", "📥 Importar", "ℹ️ Info"])
     
-    with tabs[0]:
+       with tabs[0]:
         st.subheader("Tus jugadas")
         jugadas = cargar_jugadas()
         for i, j in enumerate(jugadas):
@@ -262,6 +262,14 @@ with st.sidebar:
                     if len(nl)==6 and all(1<=n<=45 for n in nl): j["nombre"]=nn; j["numeros"]=nl; j["email"]=email
                     elif nn2!=ns: st.warning("6 números entre 1 y 45")
                 except: st.error("Formato inválido")
+                
+                # Botón para eliminar esta jugada
+                if st.button("🗑️ Eliminar jugada", key=f"del_{i}"):
+                    jugadas.pop(i)
+                    guardar_jugadas(jugadas)
+                    st.success(f"✅ Jugada eliminada")
+                    st.rerun()
+        
         c1, c2 = st.columns(2)
         with c1:
             if st.button("💾 Guardar", use_container_width=True): guardar_jugadas(jugadas); st.success("¡Guardadas!")
