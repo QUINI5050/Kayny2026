@@ -1,6 +1,6 @@
 [
   {
-    "nombre": "Adrian",
+    "nombre": "Adrian ",
     "email": "adrian.bertalot@gmail.com",
     "numeros": [
       7,
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "nombre": "Carlos",
+    "nombre": "Carlos ",
     "email": "scotillo.carlos@gmail.com",
     "numeros": [
       5,
@@ -24,7 +24,7 @@
     ]
   },
   {
-    "nombre": "Maxi",
+    "nombre": "Maxi ",
     "email": "maxzoya@hotmail.com",
     "numeros": [
       2,
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "nombre": "Ruben",
+    "nombre": "Ruben ",
     "email": "Ruben.Rodriguez@prysmian.com",
     "numeros": [
       3,
