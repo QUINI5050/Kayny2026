@@ -14,7 +14,7 @@ from scraper import (
     exportar_historial_a_excel
 )
 
-st.set_page_config(page_title="🎰 Quini 6 Checker    50% - 50%", page_icon="🎯", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="🎰 Quini 6 de los 50% y 50%", page_icon="🎯", layout="wide", initial_sidebar_state="collapsed")
 
 st.markdown("""
 <style>
@@ -28,7 +28,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🎰 Quini 6 Checker    50% - 50%")
+st.title("🎰 Quini 6 de los 50% y 50%")
 st.markdown("### Resultados y control de jugadas")
 
 for key, val in [("ultimo_chequeo", None), ("resultados_cache", None), ("pozos_cache", None), ("info_sorteo_cache", None), ("sorteo_seleccionado", "ultimo"), ("mostrar_detalle", False)]:
@@ -185,7 +185,7 @@ h3{color:#2c5aa0;font-size:1.2em}
 </style>"""
     
     html = f"""<html><head><meta charset="UTF-8">{css}</head><body>
-<h1>🎰 Quini 6 Checker</h1>
+<h1>🎰 Quini 6 de los 50% y 50%</h1>
 <p style="text-align:center">📌 {info['texto_completo']}</p>
 <h2>🏆 NÚMEROS GANADORES</h2>
 <div class="contenedor-modalidades">"""
