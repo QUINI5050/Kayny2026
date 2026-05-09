@@ -240,7 +240,7 @@ h3{color:#2c5aa0;font-size:1.2em}
                 html += f'<td class="{ct}">{a}</td></tr>'
         html += '</tbody></table><br>'
     
-    html += f'<hr class="separador"><p class="pie">Quini 6 Checker · {info["texto_completo"]} · Generado el {datetime.now().strftime("%d/%m/%Y %H:%M")}</p></body></html>'
+    html += f'<hr class="separador"><p class="pie">Quini 6 de los 50% y 50% · {info["texto_completo"]} · Generado el {datetime.now().strftime("%d/%m/%Y %H:%M")}</p></body></html>'
     return html
 
 # ---------- BARRA LATERAL ----------
@@ -493,7 +493,7 @@ if st.session_state["resultados_cache"]:
                                     st.rerun()
 else:
     st.info("👆 Hacé clic en **CARGAR ÚLTIMO SORTEO**")
-    st.markdown("""<div style="text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a5c,#2c5aa0);border-radius:20px;color:#fff;margin:20px 0"><div style="font-size:5em">🎰</div><div style="font-size:1.5em;margin:20px 0">Quini 6 Checker</div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div style="text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a5c,#2c5aa0);border-radius:20px;color:#fff;margin:20px 0"><div style="font-size:5em">🎰</div><div style="font-size:1.5em;margin:20px 0">Quini 6 de los 50% y 50%</div></div>""", unsafe_allow_html=True)
 
 st.markdown("---")
 st.caption(f"🕐 {st.session_state['ultimo_chequeo'] or 'Nunca'} | 📅 {obtener_fecha_sorteo_actual()}")
