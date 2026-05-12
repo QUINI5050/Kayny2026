@@ -443,50 +443,42 @@ with st.sidebar:
             else: st.error(f"No encontrado: {sb}")
     
     # ============================================================
-    # PESTAÑA 3: PAGOS (PROTEGIDA)
+    # PESTAÑA 3: PAGOS (ACCESO PÚBLICO)
     # ============================================================
     with tabs[3]:
-        if "clave_ok_pagos" not in st.session_state:
-            st.session_state["clave_ok_pagos"] = False
+        st.subheader("💰 Rotación de Pagos")
         
-        if not st.session_state["clave_ok_pagos"]:
-            clave_p = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_pagos", placeholder="Ingresá la clave")
-            if clave_p == "621512":
-                st.session_state["clave_ok_pagos"] = True
-                st.rerun()
-            elif clave_p and clave_p != "621512":
-                st.error("❌ Clave incorrecta")
-        else:
-            st.success("✅ Acceso concedido")
-            st.subheader("💰 Rotación de Pagos")
-            
-            pagos = cargar_pagos()
-            secuencia = pagos.get("secuencia", ["Adrian", "Maxi", "Carlos", "Ruben"])
-            
-            ultimo_domingo, prox_miercoles, prox_domingo = calcular_proximos_sorteos()
-            
-            st.markdown(f"📅 Último sorteo (domingo): **{ultimo_domingo.strftime('%d/%m/%Y')}**")
-            st.markdown(f"📅 Próximo sorteo (miércoles): **{prox_miercoles.strftime('%d/%m/%Y')}**")
-            st.markdown(f"📅 Siguiente sorteo (domingo): **{prox_domingo.strftime('%d/%m/%Y')}**")
-            
-            quien_paga, _, _ = quien_paga_proximos_sorteos()
-            
-            st.markdown("---")
-            st.markdown(f"## 💳 Próximos sorteos los paga:")
-            st.markdown(f"# **{quien_paga}**")
-            st.markdown(f"📅 {prox_miercoles.strftime('%d/%m/%Y')} y {prox_domingo.strftime('%d/%m/%Y')}")
-            
-            st.markdown("---")
-            st.subheader("🔄 Secuencia de rotación")
-            for nombre in secuencia:
-                if nombre == quien_paga:
-                    st.markdown(f"### ➡️ **{nombre}** ← PRÓXIMO")
-                else:
-                    st.markdown(f"- {nombre}")
-            
-            st.markdown("---")
-            st.subheader("⚙️ Configurar rotación")
-            
+        pagos = cargar_pagos()
+        secuencia = pagos.get("secuencia", ["Adrian", "Maxi", "Carlos", "Ruben"])
+        
+        ultimo_domingo, prox_miercoles, prox_domingo = calcular_proximos_sorteos()
+        
+        st.markdown(f"📅 Último sorteo (domingo): **{ultimo_domingo.strftime('%d/%m/%Y')}**")
+        st.markdown(f"📅 Próximo sorteo (miércoles): **{prox_miercoles.strftime('%d/%m/%Y')}**")
+        st.markdown(f"📅 Siguiente sorteo (domingo): **{prox_domingo.strftime('%d/%m/%Y')}**")
+        
+        quien_paga, _, _ = quien_paga_proximos_sorteos()
+        
+        st.markdown("---")
+        st.markdown(f"## 💳 Próximos sorteos los paga:")
+        st.markdown(f"# **{quien_paga}**")
+        st.markdown(f"📅 {prox_miercoles.strftime('%d/%m/%Y')} y {prox_domingo.strftime('%d/%m/%Y')}")
+        
+        st.markdown("---")
+        st.subheader("🔄 Secuencia de rotación")
+        for nombre in secuencia:
+            if nombre == quien_paga:
+                st.markdown(f"### ➡️ **{nombre}** ← PRÓXIMO")
+            else:
+                st.markdown(f"- {nombre}")
+        
+        st.markdown("---")
+        st.subheader("⚙️ Configurar rotación")
+        
+        # Esta parte sí puede pedir clave para modificar
+        clave_config = st.text_input("🔑 Clave para modificar", type="password", key="clave_config_pagos", placeholder="Ingresá la clave para cambiar")
+        
+        if clave_config == "621512":
             inicio_nombre_config = st.selectbox(
                 "¿Quién comienza la rotación?",
                 secuencia,
@@ -503,6 +495,8 @@ with st.sidebar:
                 guardar_pagos(pagos)
                 st.success("✅ Configuración guardada")
                 st.rerun()
+        elif clave_config and clave_config != "621512":
+            st.error("❌ Clave incorrecta")
     
     # ============================================================
     # PESTAÑA 4: IMPORTAR (PROTEGIDA)
