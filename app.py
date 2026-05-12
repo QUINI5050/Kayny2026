@@ -14,7 +14,7 @@ from scraper import (
     exportar_historial_a_excel
 )
 
-st.set_page_config(page_title="🎰 Quini 6 de los 💸💰50% y 50%💰💸", page_icon="🎯", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="🎰 Quini 6 de los 💸🤑 50% - 50% 🤑💸", page_icon="🎯", layout="wide", initial_sidebar_state="collapsed")
 
 st.markdown("""
 <style>
@@ -28,7 +28,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.title("🎰 Quini 6 de los 💸💰50% y 50%💰💸")
+st.title("🎰 Quini 6 de los 💸🤑 50% - 50% 🤑💸")
 st.markdown("### Resultados y control de jugadas")
 
 for key, val in [("ultimo_chequeo", None), ("resultados_cache", None), ("pozos_cache", None), ("info_sorteo_cache", None), ("sorteo_seleccionado", "ultimo"), ("mostrar_detalle", False)]:
@@ -240,7 +240,7 @@ h3{color:#2c5aa0;font-size:1.2em}
                 html += f'<td class="{ct}">{a}</td></tr>'
         html += '</tbody></table><br>'
     
-    html += f'<hr class="separador"><p class="pie">Quini 6 de los 50% y 50% · {info["texto_completo"]} · Generado el {datetime.now().strftime("%d/%m/%Y %H:%M")}</p></body></html>'
+    html += f'<hr class="separador"><p class="pie">Quini 6 Checker · {info["texto_completo"]} · Generado el {datetime.now().strftime("%d/%m/%Y %H:%M")}</p></body></html>'
     return html
 
 # ---------- BARRA LATERAL ----------
@@ -248,41 +248,89 @@ with st.sidebar:
     st.header("⚙️ Configuración")
     tabs = st.tabs(["📋 Jugadas", "📧 Email", "🔍 Sorteos", "📥 Importar", "ℹ️ Info"])
     
+    # ============================================================
+    # PESTAÑA 0: JUGADAS (PROTEGIDA)
+    # ============================================================
     with tabs[0]:
-        st.subheader("Tus jugadas")
-        jugadas = cargar_jugadas()
-        for i, j in enumerate(jugadas):
-            with st.expander(f"🔹 {j['nombre']}"):
-                nn = st.text_input("Nombre", value=j['nombre'], key=f"nom_{i}")
-                email = st.text_input("Email", value=j.get("email", ""), key=f"email_{i}", placeholder="ejemplo@email.com")
-                ns = ", ".join(str(n) for n in j["numeros"])
-                nn2 = st.text_input("6 números (1-45)", value=ns, key=f"nums_{i}")
-                try:
-                    nl = [int(n.strip()) for n in nn2.split(",") if n.strip().isdigit()]
-                    if len(nl)==6 and all(1<=n<=45 for n in nl): j["nombre"]=nn; j["numeros"]=nl; j["email"]=email
-                    elif nn2!=ns: st.warning("6 números entre 1 y 45")
-                except: st.error("Formato inválido")
-                
-                # Botón para eliminar esta jugada
-                if st.button("🗑️ Eliminar jugada", key=f"del_{i}"):
-                    jugadas.pop(i)
-                    guardar_jugadas(jugadas)
-                    st.success(f"✅ Jugada eliminada")
-                    st.rerun()
+        if "clave_ok_jugadas" not in st.session_state:
+            st.session_state["clave_ok_jugadas"] = False
         
-        c1, c2 = st.columns(2)
-        with c1:
-            if st.button("💾 Guardar", use_container_width=True): guardar_jugadas(jugadas); st.success("¡Guardadas!")
-        with c2:
-            if st.button("➕ Nueva", use_container_width=True): jugadas.append({"nombre":f"Jugada {len(jugadas)+1}","email":"","numeros":[1,2,3,4,5,6]}); guardar_jugadas(jugadas); st.rerun()
+        if not st.session_state["clave_ok_jugadas"]:
+            clave_j = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_jugadas", placeholder="Ingresá la clave")
+            if clave_j == "621512":
+                st.session_state["clave_ok_jugadas"] = True
+                st.rerun()
+            elif clave_j and clave_j != "621512":
+                st.error("❌ Clave incorrecta")
+        else:
+            st.success("✅ Acceso concedido")
+            st.subheader("Tus jugadas")
+            jugadas = cargar_jugadas()
+            for i, j in enumerate(jugadas):
+                with st.expander(f"🔹 {j['nombre']}"):
+                    nn = st.text_input("Nombre", value=j['nombre'], key=f"nom_{i}")
+                    email = st.text_input("Email", value=j.get("email", ""), key=f"email_{i}", placeholder="ejemplo@email.com")
+                    ns = ", ".join(str(n) for n in j["numeros"])
+                    nn2 = st.text_input("6 números (1-45)", value=ns, key=f"nums_{i}")
+                    try:
+                        nl = [int(n.strip()) for n in nn2.split(",") if n.strip().isdigit()]
+                        if len(nl)==6 and all(1<=n<=45 for n in nl): j["nombre"]=nn; j["numeros"]=nl; j["email"]=email
+                        elif nn2!=ns: st.warning("6 números entre 1 y 45")
+                    except: st.error("Formato inválido")
+                    
+                    if f"confirmar_del_{i}" not in st.session_state:
+                        st.session_state[f"confirmar_del_{i}"] = False
+                    
+                    if not st.session_state[f"confirmar_del_{i}"]:
+                        if st.button("🗑️ Eliminar jugada", key=f"del_{i}"):
+                            st.session_state[f"confirmar_del_{i}"] = True
+                            st.rerun()
+                    else:
+                        st.warning(f"⚠️ ¿Estás seguro de eliminar a '{j['nombre']}'?")
+                        col_si, col_no = st.columns(2)
+                        with col_si:
+                            if st.button("✅ Sí, eliminar", key=f"si_{i}"):
+                                jugadas.pop(i)
+                                guardar_jugadas(jugadas)
+                                st.session_state[f"confirmar_del_{i}"] = False
+                                st.success(f"✅ Jugada eliminada")
+                                st.rerun()
+                        with col_no:
+                            if st.button("❌ No, cancelar", key=f"no_{i}"):
+                                st.session_state[f"confirmar_del_{i}"] = False
+                                st.rerun()
+            
+            c1, c2 = st.columns(2)
+            with c1:
+                if st.button("💾 Guardar", use_container_width=True): guardar_jugadas(jugadas); st.success("¡Guardadas!")
+            with c2:
+                if st.button("➕ Nueva", use_container_width=True): jugadas.append({"nombre":f"Jugada {len(jugadas)+1}","email":"","numeros":[1,2,3,4,5,6]}); guardar_jugadas(jugadas); st.rerun()
     
+    # ============================================================
+    # PESTAÑA 1: EMAIL (PROTEGIDA)
+    # ============================================================
     with tabs[1]:
-        st.subheader("Configurar email")
-        st.session_state["destinatario"] = st.text_input("Mail destinatario", value="adrian.bertalot@prysmian.com")
-        st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
-        st.session_state["password"] = st.text_input("Contraseña de app", type="password", value = "hmtw lcaq nlni ejqc")
-        if st.button("📝 Guardar email"): st.success("Guardado")
+        if "clave_ok_email" not in st.session_state:
+            st.session_state["clave_ok_email"] = False
+        
+        if not st.session_state["clave_ok_email"]:
+            clave_e = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_email", placeholder="Ingresá la clave")
+            if clave_e == "621512":
+                st.session_state["clave_ok_email"] = True
+                st.rerun()
+            elif clave_e and clave_e != "621512":
+                st.error("❌ Clave incorrecta")
+        else:
+            st.success("✅ Acceso concedido")
+            st.subheader("Configurar email")
+            st.session_state["destinatario"] = st.text_input("Mail destinatario", value="adrian.bertalot@prysmian.com")
+            st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
+            st.session_state["password"] = st.text_input("Contraseña de app", type="password", value = "hmtw lcaq nlni ejqc")
+            if st.button("📝 Guardar email"): st.success("Guardado")
     
+    # ============================================================
+    # PESTAÑA 2: SORTEOS (ACCESO PÚBLICO - SIN CLAVE)
+    # ============================================================
     with tabs[2]:
         st.subheader("🔍 Sorteos anteriores")
         sg = obtener_sorteos_guardados()
@@ -305,31 +353,60 @@ with st.sidebar:
                 st.rerun()
             else: st.error(f"No encontrado: {sb}")
     
+    # ============================================================
+    # PESTAÑA 3: IMPORTAR (PROTEGIDA)
+    # ============================================================
     with tabs[3]:
-        st.subheader("📥 Importar sorteos")
-        af = st.file_uploader("Subir Excel", type=["xlsx"])
-        if af:
-            with open("temp.xlsx", "wb") as f:
-                f.write(af.getbuffer())
-            if st.button("📥 Importar"):
-                cant, err = importar_desde_excel("temp.xlsx")
-                if cant > 0:
-                    st.success(f"✅ {cant} sorteos importados")
-                    st.rerun()
-                if err:
-                    for e in err[:5]:
-                        st.caption(f"• {e}")
-        if st.button("📤 Exportar historial"):
-            ok, r = exportar_historial_a_excel()
-            if ok:
-                st.success(r)
-            else:
-                st.error(r)
+        if "clave_ok_import" not in st.session_state:
+            st.session_state["clave_ok_import"] = False
+        
+        if not st.session_state["clave_ok_import"]:
+            clave_i = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_import", placeholder="Ingresá la clave")
+            if clave_i == "621512":
+                st.session_state["clave_ok_import"] = True
+                st.rerun()
+            elif clave_i and clave_i != "621512":
+                st.error("❌ Clave incorrecta")
+        else:
+            st.success("✅ Acceso concedido")
+            st.subheader("📥 Importar sorteos")
+            af = st.file_uploader("Subir Excel", type=["xlsx"])
+            if af:
+                with open("temp.xlsx", "wb") as f:
+                    f.write(af.getbuffer())
+                if st.button("📥 Importar"):
+                    cant, err = importar_desde_excel("temp.xlsx")
+                    if cant > 0:
+                        st.success(f"✅ {cant} sorteos importados")
+                        st.rerun()
+                    if err:
+                        for e in err[:5]:
+                            st.caption(f"• {e}")
+            if st.button("📤 Exportar historial"):
+                ok, r = exportar_historial_a_excel()
+                if ok:
+                    st.success(r)
+                else:
+                    st.error(r)
     
+    # ============================================================
+    # PESTAÑA 4: INFO (PROTEGIDA)
+    # ============================================================
     with tabs[4]:
-        st.info(f"📅 {obtener_fecha_sorteo_actual()}")
-        st.caption("Sorteos: miércoles y domingos 21:15 hs")
-
+        if "clave_ok_info" not in st.session_state:
+            st.session_state["clave_ok_info"] = False
+        
+        if not st.session_state["clave_ok_info"]:
+            clave_info = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_info", placeholder="Ingresá la clave")
+            if clave_info == "621512":
+                st.session_state["clave_ok_info"] = True
+                st.rerun()
+            elif clave_info and clave_info != "621512":
+                st.error("❌ Clave incorrecta")
+        else:
+            st.success("✅ Acceso concedido")
+            st.info(f"📅 {obtener_fecha_sorteo_actual()}")
+            st.caption("Sorteos: miércoles y domingos 21:15 hs")
 # ============================================================
 # PANEL PRINCIPAL
 # ============================================================
@@ -413,8 +490,6 @@ if st.session_state["resultados_cache"]:
     col_e1, col_e2, col_e3 = st.columns([1, 2, 1])
     with col_e2:
         # Clave de seguridad para envío de mails
-
-        # Usar una variable de sesión para controlar el valor
         if "clave_valor" not in st.session_state:
             st.session_state["clave_valor"] = ""
         
@@ -478,6 +553,8 @@ if st.session_state["resultados_cache"]:
                             try:
                                 enviar_correo_con_pdf(destinatarios_str, f"🎰 Quini 6 — {info['texto_completo']}", cuerpo_mail, archivo_html, st.session_state["remitente"], st.session_state["password"])
                                 st.success(f"✅ Mail enviado a {len(destinatarios)} destinatarios")
+                                st.session_state["clave_valor"] = ""
+                                st.rerun()
                             except:
                                 enviados = 0
                                 for dest in destinatarios:
@@ -488,12 +565,12 @@ if st.session_state["resultados_cache"]:
                                         st.error(f"❌ {dest}: {e}")
                                 if enviados > 0:
                                     st.success(f"✅ {enviados} mails enviados")
-                                    # Resetear la clave
                                     st.session_state["clave_valor"] = ""
                                     st.rerun()
+
 else:
     st.info("👆 Hacé clic en **CARGAR ÚLTIMO SORTEO**")
-    st.markdown("""<div style="text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a5c,#2c5aa0);border-radius:20px;color:#fff;margin:20px 0"><div style="font-size:5em">🎰</div><div style="font-size:1.5em;margin:20px 0">Quini 6 de los 💸💰50% y 50%💰💸</div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div style="text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a5c,#2c5aa0);border-radius:20px;color:#fff;margin:20px 0"><div style="font-size:5em">🎰</div><div style="font-size:1.5em;margin:20px 0">Quini 6 Checker</div></div>""", unsafe_allow_html=True)
 
 st.markdown("---")
 st.caption(f"🕐 {st.session_state['ultimo_chequeo'] or 'Nunca'} | 📅 {obtener_fecha_sorteo_actual()}")
