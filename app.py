@@ -2,7 +2,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 import random
-from datetime import datetime
+import os
+from datetime import datetime, timedelta
 from checker import revisar_premios
 from notificar import enviar_correo_con_pdf
 from scraper import (
@@ -49,6 +50,90 @@ def cargar_jugadas():
 def guardar_jugadas(j): 
     with open("jugadas.json", "w", encoding="utf-8") as f: json.dump(j, f, indent=2, ensure_ascii=False)
     st.cache_data.clear()
+
+# ============================================================
+# SISTEMA DE ROTACIÓN DE PAGOS
+# ============================================================
+
+ARCHIVO_PAGOS = "pagos.json"
+
+def cargar_pagos():
+    if os.path.exists(ARCHIVO_PAGOS):
+        try:
+            with open(ARCHIVO_PAGOS, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except:
+            pass
+    return {
+        "secuencia": ["Adrian", "Maxi", "Carlos", "Ruben"],
+        "inicio_fecha": None,
+        "inicio_nombre": "Adrian",
+        "historial": []
+    }
+
+def guardar_pagos(datos):
+    with open(ARCHIVO_PAGOS, "w", encoding="utf-8") as f:
+        json.dump(datos, f, indent=2, ensure_ascii=False)
+
+def obtener_miercoles_de_la_semana(fecha):
+    dia_semana = fecha.weekday()
+    dias_hasta_miercoles = 2 - dia_semana
+    return fecha + timedelta(days=dias_hasta_miercoles)
+
+def obtener_proximo_miercoles():
+    hoy = datetime.now()
+    miercoles = obtener_miercoles_de_la_semana(hoy)
+    if miercoles.date() <= hoy.date():
+        miercoles += timedelta(days=7)
+    return miercoles
+
+def calcular_proximos_sorteos():
+    """Calcula el próximo miércoles y domingo basados en el último domingo de sorteo."""
+    hoy = datetime.now()
+    dia_semana = hoy.weekday()
+    
+    if dia_semana == 6:
+        ultimo_domingo = hoy
+    else:
+        dias_desde_domingo = dia_semana + 1 if dia_semana < 6 else 0
+        ultimo_domingo = hoy - timedelta(days=dias_desde_domingo)
+    
+    dias_hasta_miercoles = (2 - ultimo_domingo.weekday()) % 7
+    if dias_hasta_miercoles == 0:
+        dias_hasta_miercoles = 7
+    proximo_miercoles = ultimo_domingo + timedelta(days=dias_hasta_miercoles)
+    proximo_domingo = proximo_miercoles + timedelta(days=4)
+    
+    return ultimo_domingo, proximo_miercoles, proximo_domingo
+
+def quien_paga_proximos_sorteos():
+    """Determina quién paga los próximos sorteos (miércoles y domingo)."""
+    pagos = cargar_pagos()
+    secuencia = pagos.get("secuencia", ["Adrian", "Maxi", "Carlos", "Ruben"])
+    inicio_nombre = pagos.get("inicio_nombre", "Adrian")
+    inicio_fecha_str = pagos.get("inicio_fecha")
+    
+    if not inicio_fecha_str:
+        inicio_fecha = obtener_proximo_miercoles()
+    else:
+        inicio_fecha = datetime.strptime(inicio_fecha_str, "%Y-%m-%d")
+    
+    _, proximo_miercoles, proximo_domingo = calcular_proximos_sorteos()
+    
+    miercoles_ref = obtener_miercoles_de_la_semana(proximo_miercoles)
+    semanas = (miercoles_ref - inicio_fecha).days // 7
+    
+    if semanas < 0:
+        semanas = 0
+    
+    try:
+        indice_inicio = secuencia.index(inicio_nombre)
+    except ValueError:
+        indice_inicio = 0
+    
+    indice = (indice_inicio + semanas) % len(secuencia)
+    
+    return secuencia[indice], proximo_miercoles, proximo_domingo
 
 def _obtener_mensaje_aliento(nombre, aciertos_totales, mejor_modalidad, mejor_aciertos, numero_sorteo=""):
     if mejor_aciertos >= 6:
@@ -152,7 +237,7 @@ def _construir_tablero_html(detalle, resultados):
         html += '</tbody></table>'
     return html + '</body></html>'
 
-def _construir_html_completo_con_mensajes(resultados, pozos, info, detalle, mensajes_aliento):
+def _construir_html_completo_con_mensajes(resultados, pozos, info, detalle, mensajes_aliento, quien_paga, prox_miercoles, prox_domingo):
     css = """<style>
 body{font-family:Arial,sans-serif;background:#fff;color:#333;margin:0;padding:20px}
 h1{color:#1a3a5c;text-align:center;font-size:2em}
@@ -182,10 +267,11 @@ h3{color:#2c5aa0;font-size:1.2em}
 .tabla-premios-pdf td{border-bottom:1px solid rgba(255,255,255,.1);padding:2px 5px}
 .mensajes-aliento{background:#f0f8ff;border-left:4px solid #1a3a5c;padding:15px;margin:15px 0;border-radius:8px}
 .mensajes-aliento p{margin:5px 0;font-size:.9em}
+.aviso-pago{background:#fff3cd;border-left:4px solid #f39c12;padding:15px;margin:15px 0;border-radius:8px;font-size:1.1em;text-align:center;font-weight:bold}
 </style>"""
     
     html = f"""<html><head><meta charset="UTF-8">{css}</head><body>
-<h1>🎰 Quini 6 de los 💸💰50% y 50%💰💸</h1>
+<h1>🎰 Quini 6 de los 💸🤑 50% - 50% 🤑💸</h1>
 <p style="text-align:center">📌 {info['texto_completo']}</p>
 <h2>🏆 NÚMEROS GANADORES</h2>
 <div class="contenedor-modalidades">"""
@@ -221,6 +307,9 @@ h3{color:#2c5aa0;font-size:1.2em}
         html += f'<p>{msg}</p>'
     html += '</div>'
     
+    if quien_paga:
+        html += f'<div class="aviso-pago">💳 Próximos sorteos los paga: <strong>{quien_paga}</strong><br>📅 {prox_miercoles.strftime("%d/%m/%Y")} (miércoles) y {prox_domingo.strftime("%d/%m/%Y")} (domingo)</div>'
+    
     html += '<h2>📋 TABLERO DE JUGADAS</h2>'
     for jd in detalle:
         nombre = jd["nombre"]; nums_j = list(jd["modalidades"].values())[0]["numeros_jugados"]
@@ -246,7 +335,7 @@ h3{color:#2c5aa0;font-size:1.2em}
 # ---------- BARRA LATERAL ----------
 with st.sidebar:
     st.header("⚙️ Configuración")
-    tabs = st.tabs(["📋 Jugadas", "📧 Email", "🔍 Sorteos", "📥 Importar", "ℹ️ Info"])
+    tabs = st.tabs(["📋 Jugadas", "📧 Email", "🔍 Sorteos", "💰 Pagos", "📥 Importar", "ℹ️ Info"])
     
     # ============================================================
     # PESTAÑA 0: JUGADAS (PROTEGIDA)
@@ -323,13 +412,13 @@ with st.sidebar:
         else:
             st.success("✅ Acceso concedido")
             st.subheader("Configurar email")
-            st.session_state["destinatario"] = st.text_input("Mail destinatario", value="adrian.bertalot@prysmian.com")
-            st.session_state["remitente"] = st.text_input("Tu Gmail", value="bertaad736@gmail.com")
-            st.session_state["password"] = st.text_input("Contraseña de app", type="password", value = "hmtw lcaq nlni ejqc")
+            st.session_state["destinatario"] = st.text_input("Mail destinatario", value="desktop.share2021@gmail.com")
+            st.session_state["remitente"] = st.text_input("Tu Gmail", value="desktop.share2021@gmail.com")
+            st.session_state["password"] = st.text_input("Contraseña de app", type="password")
             if st.button("📝 Guardar email"): st.success("Guardado")
     
     # ============================================================
-    # PESTAÑA 2: SORTEOS (ACCESO PÚBLICO - SIN CLAVE)
+    # PESTAÑA 2: SORTEOS (ACCESO PÚBLICO)
     # ============================================================
     with tabs[2]:
         st.subheader("🔍 Sorteos anteriores")
@@ -354,9 +443,71 @@ with st.sidebar:
             else: st.error(f"No encontrado: {sb}")
     
     # ============================================================
-    # PESTAÑA 3: IMPORTAR (PROTEGIDA)
+    # PESTAÑA 3: PAGOS (PROTEGIDA)
     # ============================================================
     with tabs[3]:
+        if "clave_ok_pagos" not in st.session_state:
+            st.session_state["clave_ok_pagos"] = False
+        
+        if not st.session_state["clave_ok_pagos"]:
+            clave_p = st.text_input("🔑 Clave de acceso", type="password", key="clave_input_pagos", placeholder="Ingresá la clave")
+            if clave_p == "621512":
+                st.session_state["clave_ok_pagos"] = True
+                st.rerun()
+            elif clave_p and clave_p != "621512":
+                st.error("❌ Clave incorrecta")
+        else:
+            st.success("✅ Acceso concedido")
+            st.subheader("💰 Rotación de Pagos")
+            
+            pagos = cargar_pagos()
+            secuencia = pagos.get("secuencia", ["Adrian", "Maxi", "Carlos", "Ruben"])
+            
+            ultimo_domingo, prox_miercoles, prox_domingo = calcular_proximos_sorteos()
+            
+            st.markdown(f"📅 Último sorteo (domingo): **{ultimo_domingo.strftime('%d/%m/%Y')}**")
+            st.markdown(f"📅 Próximo sorteo (miércoles): **{prox_miercoles.strftime('%d/%m/%Y')}**")
+            st.markdown(f"📅 Siguiente sorteo (domingo): **{prox_domingo.strftime('%d/%m/%Y')}**")
+            
+            quien_paga, _, _ = quien_paga_proximos_sorteos()
+            
+            st.markdown("---")
+            st.markdown(f"## 💳 Próximos sorteos los paga:")
+            st.markdown(f"# **{quien_paga}**")
+            st.markdown(f"📅 {prox_miercoles.strftime('%d/%m/%Y')} y {prox_domingo.strftime('%d/%m/%Y')}")
+            
+            st.markdown("---")
+            st.subheader("🔄 Secuencia de rotación")
+            for nombre in secuencia:
+                if nombre == quien_paga:
+                    st.markdown(f"### ➡️ **{nombre}** ← PRÓXIMO")
+                else:
+                    st.markdown(f"- {nombre}")
+            
+            st.markdown("---")
+            st.subheader("⚙️ Configurar rotación")
+            
+            inicio_nombre_config = st.selectbox(
+                "¿Quién comienza la rotación?",
+                secuencia,
+                index=secuencia.index(pagos.get("inicio_nombre", "Adrian")) if pagos.get("inicio_nombre") in secuencia else 0
+            )
+            
+            fecha_inicio_str = pagos.get("inicio_fecha", "")
+            fecha_inicio_default = datetime.strptime(fecha_inicio_str, "%Y-%m-%d").date() if fecha_inicio_str else obtener_proximo_miercoles().date()
+            fecha_inicio = st.date_input("Fecha del miércoles de inicio", value=fecha_inicio_default)
+            
+            if st.button("💾 Guardar configuración de pagos"):
+                pagos["inicio_nombre"] = inicio_nombre_config
+                pagos["inicio_fecha"] = fecha_inicio.strftime("%Y-%m-%d")
+                guardar_pagos(pagos)
+                st.success("✅ Configuración guardada")
+                st.rerun()
+    
+    # ============================================================
+    # PESTAÑA 4: IMPORTAR (PROTEGIDA)
+    # ============================================================
+    with tabs[4]:
         if "clave_ok_import" not in st.session_state:
             st.session_state["clave_ok_import"] = False
         
@@ -390,9 +541,9 @@ with st.sidebar:
                     st.error(r)
     
     # ============================================================
-    # PESTAÑA 4: INFO (PROTEGIDA)
+    # PESTAÑA 5: INFO (PROTEGIDA)
     # ============================================================
-    with tabs[4]:
+    with tabs[5]:
         if "clave_ok_info" not in st.session_state:
             st.session_state["clave_ok_info"] = False
         
@@ -407,6 +558,7 @@ with st.sidebar:
             st.success("✅ Acceso concedido")
             st.info(f"📅 {obtener_fecha_sorteo_actual()}")
             st.caption("Sorteos: miércoles y domingos 21:15 hs")
+
 # ============================================================
 # PANEL PRINCIPAL
 # ============================================================
@@ -489,7 +641,6 @@ if st.session_state["resultados_cache"]:
     
     col_e1, col_e2, col_e3 = st.columns([1, 2, 1])
     with col_e2:
-        # Clave de seguridad para envío de mails
         if "clave_valor" not in st.session_state:
             st.session_state["clave_valor"] = ""
         
@@ -523,7 +674,10 @@ if st.session_state["resultados_cache"]:
                         )
                         mensajes_aliento.append(msg)
                     
-                    html_completo = _construir_html_completo_con_mensajes(resultados, pozos, info, detalle, mensajes_aliento)
+                    # Quién paga los próximos sorteos
+                    quien_paga_prox, prox_miercoles, prox_domingo = quien_paga_proximos_sorteos()
+                    
+                    html_completo = _construir_html_completo_con_mensajes(resultados, pozos, info, detalle, mensajes_aliento, quien_paga_prox, prox_miercoles, prox_domingo)
                     archivo_html = f"quini6_{info['numero'].replace('N° ','').strip()}.html"
                     with open(archivo_html, "w", encoding="utf-8") as f: f.write(html_completo)
                     
@@ -534,6 +688,9 @@ if st.session_state["resultados_cache"]:
                     cuerpo_mail += "━" * 40 + "\n\n"
                     for msg in mensajes_aliento:
                         cuerpo_mail += f"{msg}\n\n"
+                    cuerpo_mail += "━" * 40 + "\n"
+                    cuerpo_mail += f"💳 Próximos sorteos los paga: {quien_paga_prox}\n"
+                    cuerpo_mail += f"📅 {prox_miercoles.strftime('%d/%m/%Y')} (miércoles) y {prox_domingo.strftime('%d/%m/%Y')} (domingo)\n"
                     cuerpo_mail += "━" * 40 + "\n"
                     cuerpo_mail += "¡Saludos y mucha suerte para el próximo sorteo! 🍀\n"
                     cuerpo_mail += "━" * 40 + "\n"
