@@ -1914,8 +1914,8 @@
         39
       ],
       "La Segunda": [
+        0,
         1,
-        2,
         6,
         23,
         24,
@@ -1938,6 +1938,7 @@
         43
       ],
       "Premio Extra": [
+        0,
         1,
         4,
         6,
@@ -2071,6 +2072,6 @@
       "fecha": "Domingo 10 de Mayo 2026",
       "texto_completo": "Sorteo N° 3372 — Domingo 10 de Mayo 2026"
     },
-    "fecha_consulta": "10/05/2026 22:10"
+    "fecha_consulta": "12/05/2026 20:01"
   }
 }
