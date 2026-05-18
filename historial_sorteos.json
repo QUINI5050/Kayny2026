@@ -2244,5 +2244,179 @@
       "texto_completo": "Sorteo N° 3373 — Miércoles 13 de Mayo 2026"
     },
     "fecha_consulta": "14/05/2026 00:21"
+  },
+  "3374": {
+    "resultados": {
+      "Tradicional": [
+        6,
+        26,
+        29,
+        30,
+        32,
+        44
+      ],
+      "La Segunda": [
+        1,
+        6,
+        11,
+        17,
+        40,
+        42
+      ],
+      "Revancha": [
+        2,
+        8,
+        10,
+        20,
+        41,
+        43
+      ],
+      "Siempre Sale": [
+        12,
+        13,
+        14,
+        15,
+        22,
+        35
+      ],
+      "Premio Extra": [
+        1,
+        2,
+        6,
+        8,
+        10,
+        11,
+        17,
+        20,
+        26,
+        29,
+        30,
+        32,
+        40,
+        41,
+        42,
+        43,
+        44
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.225.219.169,60",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.225.219.169,60",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 45.377.172,00",
+            "ganadores": 20,
+            "premio_ganador": "$ 2.268.858,60"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 13.613.151,60",
+            "ganadores": 1116,
+            "premio_ganador": "$ 12.198,16"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 24.371.723,88",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.491.772.464,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.491.772.464,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 45.377.172,00",
+            "ganadores": 32,
+            "premio_ganador": "$ 1.418.036,63"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 13.613.151,60",
+            "ganadores": 2380,
+            "premio_ganador": "$ 5.719,81"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 16.222.316,04",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 5.715.115.088,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 5.715.115.088,40",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 62.896.846,68",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 407.214.783,00",
+        "estado": "GANADO",
+        "ganadores": 42,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 407.214.783,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 4.072.147,83",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1900,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3374",
+      "fecha": "Domingo 17 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3374 — Domingo 17 de Mayo 2026"
+    },
+    "fecha_consulta": "17/05/2026 22:09"
   }
 }
