@@ -2417,6 +2417,178 @@
       "fecha": "Domingo 17 de Mayo 2026",
       "texto_completo": "Sorteo N° 3374 — Domingo 17 de Mayo 2026"
     },
-    "fecha_consulta": "17/05/2026 22:09"
+    "fecha_consulta": "20/05/2026 22:31"
+  },
+  "3375": {
+    "resultados": {
+      "Tradicional": [
+        7,
+        8,
+        10,
+        18,
+        22,
+        32
+      ],
+      "La Segunda": [
+        7,
+        9,
+        13,
+        22,
+        33,
+        45
+      ],
+      "Revancha": [
+        16,
+        25,
+        26,
+        36,
+        42,
+        45
+      ],
+      "Siempre Sale": [
+        4,
+        13,
+        23,
+        26,
+        37,
+        42
+      ],
+      "Premio Extra": [
+        7,
+        8,
+        9,
+        10,
+        13,
+        16,
+        18,
+        22,
+        25,
+        26,
+        32,
+        33,
+        36,
+        42,
+        45
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.449.126.789,20",
+        "estado": "GANADO",
+        "ganadores": 1,
+        "aciertos_ganadores": 6,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.449.126.789,20",
+            "ganadores": 1,
+            "premio_ganador": "$ 2.449.126.789,20"
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 36.524.520,00",
+            "ganadores": 147,
+            "premio_ganador": "$ 248.466,12"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 10.957.356,00",
+            "ganadores": 5445,
+            "premio_ganador": "$ 3.000,00"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 26.928.440,28",
+            "ganadores": 1,
+            "premio_ganador": "$ 26.928.440,28"
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.715.680.083,60",
+        "estado": "GANADO",
+        "ganadores": 2,
+        "aciertos_ganadores": 6,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.715.680.083,60",
+            "ganadores": 2,
+            "premio_ganador": "$ 857.840.041,80"
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 36.524.520,00",
+            "ganadores": 260,
+            "premio_ganador": "$ 140.478,92"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 10.957.356,00",
+            "ganadores": 6095,
+            "premio_ganador": "$ 3.000,00"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 18.779.032,44",
+            "ganadores": 2,
+            "premio_ganador": "$ 9.389.516,22"
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 6.098.635.249,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 6.098.635.249,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 67.276.037,16",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 327.870.666,00",
+        "estado": "GANADO",
+        "ganadores": 31,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 327.870.666,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.278.706,66",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1304,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3375",
+      "fecha": "Miércoles 20 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3375 — Miércoles 20 de Mayo 2026"
+    },
+    "fecha_consulta": "21/05/2026 13:59"
   }
 }
