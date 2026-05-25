@@ -2590,5 +2590,178 @@
       "texto_completo": "Sorteo N° 3375 — Miércoles 20 de Mayo 2026"
     },
     "fecha_consulta": "21/05/2026 13:59"
+  },
+  "3376": {
+    "resultados": {
+      "Tradicional": [
+        5,
+        8,
+        10,
+        12,
+        28,
+        34
+      ],
+      "La Segunda": [
+        11,
+        14,
+        20,
+        35,
+        39,
+        43
+      ],
+      "Revancha": [
+        8,
+        12,
+        15,
+        18,
+        21,
+        36
+      ],
+      "Siempre Sale": [
+        0,
+        7,
+        21,
+        25,
+        29,
+        35
+      ],
+      "Premio Extra": [
+        5,
+        8,
+        10,
+        11,
+        12,
+        14,
+        15,
+        18,
+        20,
+        21,
+        28,
+        34,
+        35,
+        36,
+        39,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 780.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 47.251.998,00",
+            "ganadores": 72,
+            "premio_ganador": "$ 656.277,75"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 14.175.599,40",
+            "ganadores": 3151,
+            "premio_ganador": "$ 4.498,76"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 7.800.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 780.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 47.251.998,00",
+            "ganadores": 21,
+            "premio_ganador": "$ 2.250.095,14"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 14.175.599,40",
+            "ganadores": 1141,
+            "premio_ganador": "$ 12.423,84"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 7.800.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 6.621.366.416,40",
+        "estado": "GANADO",
+        "ganadores": 2,
+        "aciertos_ganadores": 6,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 6.621.366.416,40",
+            "ganadores": 2,
+            "premio_ganador": "$ 3.310.683.208,20"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 72.941.267,88",
+            "ganadores": 2,
+            "premio_ganador": "$ 36.470.633,94"
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 424.127.583,00",
+        "estado": "GANADO",
+        "ganadores": 13,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 424.127.583,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 4.241.275,83",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1350,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3376",
+      "fecha": "Domingo 24 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3376 — Domingo 24 de Mayo 2026"
+    },
+    "fecha_consulta": "25/05/2026 02:17"
   }
 }
