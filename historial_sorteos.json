@@ -2763,5 +2763,177 @@
       "texto_completo": "Sorteo N° 3376 — Domingo 24 de Mayo 2026"
     },
     "fecha_consulta": "25/05/2026 02:17"
+  },
+  "3377": {
+    "resultados": {
+      "Tradicional": [
+        0,
+        4,
+        7,
+        8,
+        40,
+        45
+      ],
+      "La Segunda": [
+        8,
+        9,
+        13,
+        23,
+        33,
+        45
+      ],
+      "Revancha": [
+        3,
+        6,
+        9,
+        15,
+        28,
+        43
+      ],
+      "Siempre Sale": [
+        14,
+        23,
+        26,
+        27,
+        30,
+        37
+      ],
+      "Premio Extra": [
+        0,
+        3,
+        4,
+        6,
+        7,
+        8,
+        9,
+        13,
+        15,
+        23,
+        28,
+        33,
+        40,
+        43,
+        45
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 780.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 31.024.188,00",
+            "ganadores": 12,
+            "premio_ganador": "$ 2.585.349,00"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 9.307.256,40",
+            "ganadores": 916,
+            "premio_ganador": "$ 10.160,76"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 7.800.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 780.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 780.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 31.024.188,00",
+            "ganadores": 71,
+            "premio_ganador": "$ 436.960,39"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 9.307.256,40",
+            "ganadores": 2671,
+            "premio_ganador": "$ 3.484,56"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 7.800.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 600.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1,
+        "aciertos_ganadores": 6,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 600.000.000,00",
+            "ganadores": 1,
+            "premio_ganador": "$ 600.000.000,00"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 6.000.000,00",
+            "ganadores": 1,
+            "premio_ganador": "$ 6.000.000,00"
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 278.527.815,00",
+        "estado": "GANADO",
+        "ganadores": 14,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 278.527.815,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 2.785.278,15",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 770,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3377",
+      "fecha": "Miércoles 27 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3377 — Miércoles 27 de Mayo 2026"
+    },
+    "fecha_consulta": "27/05/2026 23:08"
   }
 }
