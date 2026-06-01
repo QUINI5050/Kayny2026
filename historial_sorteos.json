@@ -2934,6 +2934,180 @@
       "fecha": "Miércoles 27 de Mayo 2026",
       "texto_completo": "Sorteo N° 3377 — Miércoles 27 de Mayo 2026"
     },
-    "fecha_consulta": "27/05/2026 23:08"
+    "fecha_consulta": "28/05/2026 21:51"
+  },
+  "3378": {
+    "resultados": {
+      "Tradicional": [
+        16,
+        26,
+        27,
+        30,
+        32,
+        42
+      ],
+      "La Segunda": [
+        2,
+        14,
+        22,
+        23,
+        24,
+        32
+      ],
+      "Revancha": [
+        0,
+        1,
+        6,
+        9,
+        21,
+        43
+      ],
+      "Siempre Sale": [
+        22,
+        23,
+        34,
+        37,
+        43,
+        44
+      ],
+      "Premio Extra": [
+        0,
+        1,
+        2,
+        6,
+        9,
+        14,
+        16,
+        21,
+        22,
+        23,
+        24,
+        26,
+        27,
+        30,
+        32,
+        42,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 794.387.449,80",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 794.387.449,80",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 43.035.354,00",
+            "ganadores": 11,
+            "premio_ganador": "$ 3.912.304,91"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.910.606,20",
+            "ganadores": 1108,
+            "premio_ganador": "$ 11.652,17"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 8.491.807,80",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 794.387.449,80",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 794.387.449,80",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 43.035.354,00",
+            "ganadores": 106,
+            "premio_ganador": "$ 405.993,91"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.910.606,20",
+            "ganadores": 5065,
+            "premio_ganador": "$ 3.000,00"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 8.491.807,80",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 600.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 600.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 6.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 386.280.576,00",
+        "estado": "GANADO",
+        "ganadores": 5,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 386.280.576,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.862.805,76",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 155.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1898,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3378",
+      "fecha": "Domingo 31 de Mayo 2026",
+      "texto_completo": "Sorteo N° 3378 — Domingo 31 de Mayo 2026"
+    },
+    "fecha_consulta": "01/06/2026 01:22"
   }
 }
