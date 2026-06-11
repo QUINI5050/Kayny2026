@@ -3450,6 +3450,179 @@
       "fecha": "Domingo 7 de Junio 2026",
       "texto_completo": "Sorteo N° 3380 — Domingo 7 de Junio 2026"
     },
-    "fecha_consulta": "07/06/2026 22:30"
+    "fecha_consulta": "08/06/2026 21:34"
+  },
+  "3381": {
+    "resultados": {
+      "Tradicional": [
+        1,
+        17,
+        26,
+        27,
+        28,
+        33
+      ],
+      "La Segunda": [
+        0,
+        4,
+        8,
+        9,
+        15,
+        28
+      ],
+      "Revancha": [
+        5,
+        12,
+        14,
+        16,
+        33,
+        35
+      ],
+      "Siempre Sale": [
+        9,
+        12,
+        16,
+        21,
+        33,
+        41
+      ],
+      "Premio Extra": [
+        0,
+        1,
+        4,
+        5,
+        8,
+        9,
+        12,
+        14,
+        15,
+        16,
+        17,
+        26,
+        27,
+        28,
+        33,
+        35
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 1.669.442.191,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.669.442.191,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 41.578.344,00",
+            "ganadores": 18,
+            "premio_ganador": "$ 2.309.908,00"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.473.503,20",
+            "ganadores": 1378,
+            "premio_ganador": "$ 9.051,89"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 18.225.970,56",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.100.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.100.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 41.578.344,00",
+            "ganadores": 25,
+            "premio_ganador": "$ 1.663.133,76"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.473.503,20",
+            "ganadores": 1580,
+            "premio_ganador": "$ 7.894,62"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 11.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 2.014.286.281,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.014.286.281,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 21.827.168,28",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 373.162.464,00",
+        "estado": "GANADO",
+        "ganadores": 57,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 373.162.464,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.731.624,64",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1279,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3381",
+      "fecha": "Miércoles 10 de Junio 2026",
+      "texto_completo": "Sorteo N° 3381 — Miércoles 10 de Junio 2026"
+    },
+    "fecha_consulta": "10/06/2026 23:45"
   }
 }
