@@ -3624,5 +3624,178 @@
       "texto_completo": "Sorteo N° 3381 — Miércoles 10 de Junio 2026"
     },
     "fecha_consulta": "10/06/2026 23:45"
+  },
+  "3382": {
+    "resultados": {
+      "Tradicional": [
+        2,
+        10,
+        18,
+        21,
+        30,
+        36
+      ],
+      "La Segunda": [
+        0,
+        21,
+        25,
+        27,
+        33,
+        44
+      ],
+      "Revancha": [
+        11,
+        13,
+        17,
+        18,
+        28,
+        41
+      ],
+      "Siempre Sale": [
+        0,
+        10,
+        11,
+        16,
+        25,
+        34
+      ],
+      "Premio Extra": [
+        0,
+        2,
+        10,
+        11,
+        13,
+        17,
+        18,
+        21,
+        25,
+        27,
+        28,
+        30,
+        33,
+        36,
+        41,
+        44
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.013.500.210,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.013.500.210,40",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 53.308.980,00",
+            "ganadores": 51,
+            "premio_ganador": "$ 1.045.274,12"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 15.992.694,00",
+            "ganadores": 2263,
+            "premio_ganador": "$ 7.067,03"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 21.957.599,16",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.100.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.100.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 53.308.980,00",
+            "ganadores": 15,
+            "premio_ganador": "$ 3.553.932,00"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 15.992.694,00",
+            "ganadores": 995,
+            "premio_ganador": "$ 16.073,06"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 11.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 2.603.439.673,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.603.439.673,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 28.217.113,56",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 478.321.524,00",
+        "estado": "GANADO",
+        "ganadores": 21,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 478.321.524,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 4.783.215,24",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1337,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3382",
+      "fecha": "Domingo 14 de Junio 2026",
+      "texto_completo": "Sorteo N° 3382 — Domingo 14 de Junio 2026"
+    },
+    "fecha_consulta": "15/06/2026 01:07"
   }
 }
