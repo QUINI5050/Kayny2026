@@ -3797,5 +3797,351 @@
       "texto_completo": "Sorteo N° 3382 — Domingo 14 de Junio 2026"
     },
     "fecha_consulta": "15/06/2026 01:07"
+  },
+  "3383": {
+    "resultados": {
+      "Tradicional": [
+        5,
+        12,
+        15,
+        21,
+        31,
+        44
+      ],
+      "La Segunda": [
+        4,
+        16,
+        22,
+        25,
+        30,
+        36
+      ],
+      "Revancha": [
+        6,
+        8,
+        16,
+        22,
+        23,
+        37
+      ],
+      "Siempre Sale": [
+        0,
+        5,
+        8,
+        14,
+        22,
+        35
+      ],
+      "Premio Extra": [
+        4,
+        5,
+        6,
+        8,
+        12,
+        15,
+        16,
+        21,
+        22,
+        23,
+        25,
+        30,
+        31,
+        36,
+        37,
+        44
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.250.681.476,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.250.681.476,40",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 39.213.936,00",
+            "ganadores": 21,
+            "premio_ganador": "$ 1.867.330,29"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 11.764.180,80",
+            "ganadores": 1422,
+            "premio_ganador": "$ 8.272,98"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 24.702.574,68",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.100.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.100.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 39.213.936,00",
+            "ganadores": 32,
+            "premio_ganador": "$ 1.225.435,50"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 11.764.180,80",
+            "ganadores": 1364,
+            "premio_ganador": "$ 8.624,77"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 11.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 3.009.575.228,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 3.009.575.228,40",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 32.917.463,64",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 351.828.684,00",
+        "estado": "GANADO",
+        "ganadores": 47,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 351.828.684,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.518.286,84",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1046,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3383",
+      "fecha": "Miércoles 17 de Junio 2026",
+      "texto_completo": "Sorteo N° 3383 — Miércoles 17 de Junio 2026"
+    },
+    "fecha_consulta": "17/06/2026 22:32"
+  },
+  "3384": {
+    "resultados": {
+      "Tradicional": [
+        7,
+        19,
+        24,
+        26,
+        32,
+        45
+      ],
+      "La Segunda": [
+        12,
+        24,
+        26,
+        28,
+        33,
+        42
+      ],
+      "Revancha": [
+        8,
+        9,
+        16,
+        27,
+        31,
+        36
+      ],
+      "Siempre Sale": [
+        2,
+        24,
+        26,
+        29,
+        40,
+        44
+      ],
+      "Premio Extra": [
+        7,
+        8,
+        9,
+        12,
+        16,
+        19,
+        24,
+        26,
+        27,
+        28,
+        31,
+        32,
+        33,
+        36,
+        42,
+        45
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.468.722.057,20",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.468.722.057,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 35.070.048,00",
+            "ganadores": 52,
+            "premio_ganador": "$ 674.424,00"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 10.521.014,40",
+            "ganadores": 2060,
+            "premio_ganador": "$ 5.107,29"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 27.157.478,04",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.100.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.100.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 35.070.048,00",
+            "ganadores": 13,
+            "premio_ganador": "$ 2.697.696,00"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 10.521.014,40",
+            "ganadores": 1172,
+            "premio_ganador": "$ 8.976,97"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 11.841.991,56",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 3.382.916.367,60",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 3.382.916.367,60",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 37.120.910,04",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 314.552.808,00",
+        "estado": "GANADO",
+        "ganadores": 11,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 314.552.808,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.145.528,08",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1127,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3384",
+      "fecha": "Domingo 21 de Junio 2026",
+      "texto_completo": "Sorteo N° 3384 — Domingo 21 de Junio 2026"
+    },
+    "fecha_consulta": "21/06/2026 23:06"
   }
 }
