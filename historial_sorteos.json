@@ -4143,5 +4143,353 @@
       "texto_completo": "Sorteo N° 3384 — Domingo 21 de Junio 2026"
     },
     "fecha_consulta": "21/06/2026 23:06"
+  },
+  "3385": {
+    "resultados": {
+      "Tradicional": [
+        1,
+        19,
+        32,
+        37,
+        38,
+        41
+      ],
+      "La Segunda": [
+        2,
+        3,
+        4,
+        7,
+        23,
+        42
+      ],
+      "Revancha": [
+        3,
+        9,
+        11,
+        30,
+        35,
+        43
+      ],
+      "Siempre Sale": [
+        6,
+        10,
+        25,
+        33,
+        37,
+        42
+      ],
+      "Premio Extra": [
+        1,
+        2,
+        3,
+        4,
+        7,
+        9,
+        11,
+        19,
+        23,
+        30,
+        32,
+        35,
+        37,
+        38,
+        41,
+        42,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 2.744.105.439,60",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 2.744.105.439,60",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 42.847.488,00",
+            "ganadores": 15,
+            "premio_ganador": "$ 2.856.499,20"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.854.246,40",
+            "ganadores": 636,
+            "premio_ganador": "$ 20.211,08"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 30.156.802,20",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.365.711.656,40",
+        "estado": "GANADO",
+        "ganadores": 1,
+        "aciertos_ganadores": 6,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.365.711.656,40",
+            "ganadores": 1,
+            "premio_ganador": "$ 1.365.711.656,40"
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 42.847.488,00",
+            "ganadores": 30,
+            "premio_ganador": "$ 1.428.249,60"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 12.854.246,40",
+            "ganadores": 2658,
+            "premio_ganador": "$ 4.836,06"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 14.841.315,72",
+            "ganadores": 1,
+            "premio_ganador": "$ 14.841.315,72"
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 3.854.504.415,60",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 3.854.504.415,60",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 42.257.135,16",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 384.425.352,00",
+        "estado": "GANADO",
+        "ganadores": 33,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 384.425.352,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 3.844.253,52",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1373,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3385",
+      "fecha": "Miércoles 24 de Junio 2026",
+      "texto_completo": "Sorteo N° 3385 — Miércoles 24 de Junio 2026"
+    },
+    "fecha_consulta": "25/06/2026 01:09"
+  },
+  "3386": {
+    "resultados": {
+      "Tradicional": [
+        0,
+        16,
+        20,
+        30,
+        38,
+        43
+      ],
+      "La Segunda": [
+        7,
+        11,
+        21,
+        31,
+        38,
+        41
+      ],
+      "Revancha": [
+        1,
+        3,
+        10,
+        12,
+        15,
+        23
+      ],
+      "Siempre Sale": [
+        14,
+        15,
+        26,
+        27,
+        28,
+        32
+      ],
+      "Premio Extra": [
+        0,
+        1,
+        3,
+        7,
+        10,
+        11,
+        12,
+        15,
+        16,
+        20,
+        21,
+        23,
+        30,
+        31,
+        38,
+        41,
+        43
+      ]
+    },
+    "pozos": {
+      "Tradicional": {
+        "monto": "$ 3.089.999.682,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 3.089.999.682,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 53.698.212,00",
+            "ganadores": 10,
+            "premio_ganador": "$ 5.369.821,20"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 16.109.463,60",
+            "ganadores": 467,
+            "premio_ganador": "$ 34.495,64"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 33.915.677,04",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "La Segunda": {
+        "monto": "$ 1.100.000.000,00",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 1.100.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "2° Premio",
+            "pozo": "$ 53.698.212,00",
+            "ganadores": 44,
+            "premio_ganador": "$ 1.220.413,91"
+          },
+          {
+            "premio": "3° Premio",
+            "pozo": "$ 16.109.463,60",
+            "ganadores": 2069,
+            "premio_ganador": "$ 7.786,11"
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 11.000.000,00",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Revancha": {
+        "monto": "$ 4.446.770.756,40",
+        "estado": "VACANTE",
+        "ganadores": 0,
+        "aciertos_ganadores": 0,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 4.446.770.756,40",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 48.693.421,08",
+            "ganadores": "VACANTE",
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Siempre Sale": {
+        "monto": "$ 481.707.972,00",
+        "estado": "GANADO",
+        "ganadores": 34,
+        "aciertos_ganadores": 5,
+        "tabla_premios": [
+          {
+            "premio": "1° Premio",
+            "pozo": "$ 481.707.972,00",
+            "ganadores": 5,
+            "premio_ganador": ""
+          },
+          {
+            "premio": "Estímulo",
+            "pozo": "$ 4.817.079,72",
+            "ganadores": 0,
+            "premio_ganador": ""
+          }
+        ]
+      },
+      "Premio Extra": {
+        "monto": "$ 200.000.000,00",
+        "estado": "GANADO",
+        "ganadores": 1695,
+        "aciertos_ganadores": 6,
+        "tabla_premios": []
+      }
+    },
+    "info_sorteo": {
+      "numero": "N° 3386",
+      "fecha": "Domingo 28 de Junio 2026",
+      "texto_completo": "Sorteo N° 3386 — Domingo 28 de Junio 2026"
+    },
+    "fecha_consulta": "28/06/2026 22:56"
   }
 }
